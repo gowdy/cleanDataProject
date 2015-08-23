@@ -36,3 +36,8 @@ stddevA <- sd( newFrame$aA )
 stddevB <- sd( newFrame$aB )
 stddevC <- sd( newFrame$aC )
 
+# create new dataset with average for each activity and each subject
+summaryData <- aggregate( newFrame[,1:6], list(Subject = newFrame$Subject, Activity = newFrame$ActivityName), FUN = mean )
+
+# output table to file for uploading
+write.table( summaryData, file = "tidyData.txt", row.name = FALSE )
